@@ -1,0 +1,165 @@
+import 'package:flutter/material.dart';
+import 'package:fresh2_arrive/controller/notification_controller.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../resources/app_theme.dart';
+import '../widgets/add_text.dart';
+import '../widgets/dimensions.dart';
+
+class NotificationScreen extends StatefulWidget {
+  const NotificationScreen({Key? key}) : super(key: key);
+  static var notificationScreen = "/notificationScreen";
+  @override
+  NotificationScreenState createState() => NotificationScreenState();
+}
+
+class NotificationScreenState extends State<NotificationScreen> {
+  final controller = Get.put(NotificationController());
+  @override
+  Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+    return Scaffold(
+        appBar: backAppBar2(title: "Notifications", context: context),
+        body:
+        Obx(() {
+  return
+    controller.isDataLoading.value ? controller.model.value.data!.notificationData!.isNotEmpty ?
+        SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: width * 0.02, vertical: height * .01),
+            child: Column(
+              children: [
+                ListView.builder(
+                    itemCount: controller.model.value.data!.notificationData!.length,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return notificationList(
+                        // "Date - 17-02-2022",
+                        // "Lorem ipsum dolor sit amet",
+                        // "Lorem ipsum dolor sit amet Consectetur");
+
+                          controller.model.value.data!.notificationData![index].time.toString(),
+                          controller.model.value.data!.notificationData![index].title.toString(),
+                        controller.model.value.data!.notificationData![index].body.toString());
+                    }),
+
+
+              ],
+            ),
+          ),
+        )
+          :Padding(
+          padding: EdgeInsets.only(top: AddSize.padding20 * 2,left: AddSize.padding20 * 5),
+          child: Text("Notification Not Available"),
+        ):const Center(child: CircularProgressIndicator(),);
+      })
+    );
+  }
+
+  Widget notificationList(date, title, description) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
+    return Container(
+      padding: EdgeInsets.only(left: 5,right: 5),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10)
+      ),
+      // margin: const EdgeInsets.only(left: 5, right: 5),
+      margin: EdgeInsets.symmetric(vertical: 3),
+      child: Card(
+        elevation: 0,
+        child: Row(
+          children: [
+            SizedBox(
+              width: width * 0.03,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: width * .005,
+              ),
+              child: Container(
+                width: width * .010,
+                height: height * .08,
+                decoration: const BoxDecoration(
+                  color: AppTheme.primaryColor,
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                ),
+              ),
+            ),
+            SizedBox(
+              width: width * 0.03,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8, bottom: 8),
+              child: Container(
+                height: height * .05,
+                width: width * .10,
+                decoration: const ShapeDecoration(
+                    color: AppTheme.primaryColor, shape: CircleBorder()),
+                child: Center(
+                    child: Text(
+                  "B",
+                  style: Theme.of(context).textTheme.headline5!.copyWith(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 24,
+                      color: AppTheme.backgroundcolor),
+                )),
+              ),
+            ),
+            Expanded(
+              child: Container(
+                margin: const EdgeInsets.fromLTRB(12, 8, 8, 12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    addHeight(6),
+                    Text(
+                      date,
+                      style: GoogleFonts.quicksand(
+                            fontWeight: FontWeight.w600,
+                            color:  Color(0xffC33D18),
+                            fontSize: 12,
+                          ),
+                    ),
+                    addHeight(6),
+                    Text(
+                      title,
+                      style: GoogleFonts.quicksand(
+                        fontWeight: FontWeight.w700,
+                        color: Color(0xff000000),
+                        fontSize: 16,
+                          ),
+                    ),
+                    //textBold(snapshot.data!.data.notifications[index].title),
+                    addHeight(6),
+                    Text(
+                      description,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                      style: GoogleFonts.quicksand(
+                            fontWeight: FontWeight.w600,
+                            color: AppTheme.subText,
+                            fontSize: 12,
+                          ),
+                    ),
+                    addHeight(6),
+                  ],
+                ),
+              ),
+            ),
+
+          ],
+        ),
+      ),
+    );
+  }
+// return loader(context);
+}
+//);
+// }
+//}

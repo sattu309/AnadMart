@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "295464592552",
+    "project_id": "anadmart-5118a",
+    "storage_bucket": "anadmart-5118a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:295464592552:android:2b907f460f6e3e2eda0e9d",
+        "android_client_info": {
+          "package_name": "com.anand_mart.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "295464592552-tajvbtonu6eo3k4nhd4lhikum99mmovc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.anand_mart.android",
+            "certificate_hash": "1fc7acb64493e1fcdff1abcb16954ffb0b58bce8"
+          }
+        },
+        {
+          "client_id": "295464592552-dama2sha8mnrp3q153qhs88v2n9n65j3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAh5u5heek20yN9UGjo3-hseqORSexenLM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "295464592552-dama2sha8mnrp3q153qhs88v2n9n65j3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
